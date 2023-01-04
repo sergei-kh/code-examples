@@ -1,0 +1,8 @@
+.idea
+node_modules
+public
+mix-manifest.json
+package.json
+package-lock.json
+js/app.js
+webpack.mix.js

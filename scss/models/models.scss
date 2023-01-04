@@ -1,0 +1,72 @@
+@use "./../variables/color_vars";
+
+// Скорость анимации для некоторых элементов
+%transition-look-el {
+  transition: transform .3s, opacity .3s, color .3s;
+}
+
+// Стили для блока с моделями мотоциклов
+.models {
+
+  &__link { // Стили для ссылки на модель
+    &:hover .models__more,
+    &:focus .models__more, { // При наведении на ссылку модели сдвинем текст "Смотреть" и изменим цвет
+      transform: translateX(-10px);
+      color: color_vars.$primary-color;
+    }
+
+    &:hover .models__more-arrow,
+    &:focus .models__more-arrow, { // При наведении на ссылку сдвигаем и показываем иконку стрелки
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  &__item { // Фоновый блок для модели мотоцикла
+    padding: 30px;
+    // Уменьшим внутренний отступ в промежутке начиная с 900 до 767 по ширине
+    @media (max-width: 900px) and (min-width: 768px) {
+      padding: 20px;
+    }
+
+    @media (max-width: 767px) {
+      margin-bottom: 2rem;
+      padding: 20px;
+    }
+  }
+
+  &__title { // Название модели
+    font-size: 33px;
+    letter-spacing: 1.1px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0 auto;
+    width: 98%;
+    // Сделаем название модели размером 2vw, начиная с 1300 до 767 по ширине
+    @media (max-width: 1300px) and (min-width: 768px) {
+      font-size: 2vw;
+    }
+    @media (max-width: 767px) {
+      font-size: 28px;
+    }
+    @media (max-width: 440px) {
+      font-size: 5.8vw;
+    }
+  }
+
+  &__more { // Стили для текста "Смотреть"
+    letter-spacing: .5px;
+    @extend %transition-look-el;
+  }
+
+  &__more-arrow { // Стили для стрелки возле надписи "Смотреть"
+    transform: translateX(-10px);
+    opacity: 0;
+    @extend %transition-look-el;
+  }
+
+  &__img { // Изображение модели
+    margin: 0 auto;
+  }
+}
